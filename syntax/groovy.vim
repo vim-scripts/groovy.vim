@@ -1,9 +1,9 @@
 " Vim syntax file
 " Language:	Groovy
 " Maintainer:	Alessio Pace <billy.corgan@tiscali.it>
-" Version: 	0.1.9
+" Version: 	0.1.9b
 " URL:	  http://www.vim.org/scripts/script.php?script_id=945	
-" Last Change:	2/4/2004
+" Last Change:	6/4/2004
 
 " This is my very first vim script, I hope to have
 " done it the right way.
@@ -95,6 +95,58 @@ syn keyword groovyBranch          break continue nextgroup=groovyUserLabelRef sk
 syn match   groovyUserLabelRef    "\k\+" contained
 syn keyword groovyScopeDecl       public protected private abstract
 
+
+if exists("groovy_highlight_groovy_lang_ids") || exists("groovy_highlight_groovy_lang") || exists("groovy_highlight_all")
+  " groovy.lang.*
+  syn keyword groovyLangClass  Closure MetaMethod GroovyObject
+  
+  syn match groovyJavaLangClass "\<System\>"
+  syn keyword groovyJavaLangClass  Cloneable Comparable Runnable Serializable Boolean Byte Class Object
+  syn keyword groovyJavaLangClass  Character CharSequence ClassLoader Compiler
+  " syn keyword groovyJavaLangClass  Integer Double Float Long 
+  syn keyword groovyJavaLangClass  InheritableThreadLocal Math Number Object Package Process
+  syn keyword groovyJavaLangClass  Runtime RuntimePermission InheritableThreadLocal
+  syn keyword groovyJavaLangClass  SecurityManager Short StrictMath StackTraceElement
+  syn keyword groovyJavaLangClass  StringBuffer Thread ThreadGroup
+  syn keyword groovyJavaLangClass  ThreadLocal Throwable Void ArithmeticException
+  syn keyword groovyJavaLangClass  ArrayIndexOutOfBoundsException AssertionError
+  syn keyword groovyJavaLangClass  ArrayStoreException ClassCastException
+  syn keyword groovyJavaLangClass  ClassNotFoundException
+  syn keyword groovyJavaLangClass  CloneNotSupportedException Exception
+  syn keyword groovyJavaLangClass  IllegalAccessException
+  syn keyword groovyJavaLangClass  IllegalArgumentException
+  syn keyword groovyJavaLangClass  IllegalMonitorStateException
+  syn keyword groovyJavaLangClass  IllegalStateException
+  syn keyword groovyJavaLangClass  IllegalThreadStateException
+  syn keyword groovyJavaLangClass  IndexOutOfBoundsException
+  syn keyword groovyJavaLangClass  InstantiationException InterruptedException
+  syn keyword groovyJavaLangClass  NegativeArraySizeException NoSuchFieldException
+  syn keyword groovyJavaLangClass  NoSuchMethodException NullPointerException
+  syn keyword groovyJavaLangClass  NumberFormatException RuntimeException
+  syn keyword groovyJavaLangClass  SecurityException StringIndexOutOfBoundsException
+  syn keyword groovyJavaLangClass  UnsupportedOperationException
+  syn keyword groovyJavaLangClass  AbstractMethodError ClassCircularityError
+  syn keyword groovyJavaLangClass  ClassFormatError Error ExceptionInInitializerError
+  syn keyword groovyJavaLangClass  IllegalAccessError InstantiationError
+  syn keyword groovyJavaLangClass  IncompatibleClassChangeError InternalError
+  syn keyword groovyJavaLangClass  LinkageError NoClassDefFoundError
+  syn keyword groovyJavaLangClass  NoSuchFieldError NoSuchMethodError
+  syn keyword groovyJavaLangClass  OutOfMemoryError StackOverflowError
+  syn keyword groovyJavaLangClass  ThreadDeath UnknownError UnsatisfiedLinkError
+  syn keyword groovyJavaLangClass  UnsupportedClassVersionError VerifyError
+  syn keyword groovyJavaLangClass  VirtualMachineError
+
+  syn keyword groovyJavaLangObject clone equals finalize getClass hashCode
+  syn keyword groovyJavaLangObject notify notifyAll toString wait
+
+  GroovyHiLink groovyLangClass                   groovyConstant
+  GroovyHiLink groovyJavaLangClass               groovyExternal
+  GroovyHiLink groovyJavaLangObject              groovyConstant
+  syn cluster groovyTop add=groovyJavaLangObject,groovyJavaLangClass,groovyLangClass
+  syn cluster groovyClasses add=groovyJavaLangClass,groovyLangClass
+endif
+
+
 " Groovy stuff
 syn match groovyOperator "\.\."
 syn match groovyOperator "<\{2,3}"
@@ -103,58 +155,12 @@ syn match groovyOperator "->"
 syn match groovyExternal		'^#!.*[/\\]groovy\>'
 syn match groovyExceptions        "\<Exception\>\|\<[A-Z]\{1,}[a-zA-Z0-9]*Exception\>"
 
-
-if exists("groovy_highlight_groovy_lang_ids") || exists("groovy_highlight_groovy_lang") || exists("groovy_highlight_all")
-  " groovy.lang.*
-  syn match groovyLangClass "\<System\>"
-  syn keyword groovyLangClass  Closure Object MetaMethod GroovyObject
-  syn keyword groovyLangClass  Cloneable Comparable Runnable Boolean Byte Class
-  syn keyword groovyLangClass  Character CharSequence ClassLoader Compiler Double Float
-  syn keyword groovyLangClass  Integer InheritableThreadLocal Long Math Number Object Package Process
-  syn keyword groovyLangClass  Runtime RuntimePermission InheritableThreadLocal
-  syn keyword groovyLangClass  SecurityManager Short String StrictMath StackTraceElement
-  syn keyword groovyLangClass  StringBuffer Thread ThreadGroup
-  syn keyword groovyLangClass  ThreadLocal Throwable Void ArithmeticException
-  syn keyword groovyLangClass  ArrayIndexOutOfBoundsException AssertionError
-  syn keyword groovyLangClass  ArrayStoreException ClassCastException
-  syn keyword groovyLangClass  ClassNotFoundException
-  syn keyword groovyLangClass  CloneNotSupportedException Exception
-  syn keyword groovyLangClass  IllegalAccessException
-  syn keyword groovyLangClass  IllegalArgumentException
-  syn keyword groovyLangClass  IllegalMonitorStateException
-  syn keyword groovyLangClass  IllegalStateException
-  syn keyword groovyLangClass  IllegalThreadStateException
-  syn keyword groovyLangClass  IndexOutOfBoundsException
-  syn keyword groovyLangClass  InstantiationException InterruptedException
-  syn keyword groovyLangClass  NegativeArraySizeException NoSuchFieldException
-  syn keyword groovyLangClass  NoSuchMethodException NullPointerException
-  syn keyword groovyLangClass  NumberFormatException RuntimeException
-  syn keyword groovyLangClass  SecurityException StringIndexOutOfBoundsException
-  syn keyword groovyLangClass  UnsupportedOperationException
-  syn keyword groovyLangClass  AbstractMethodError ClassCircularityError
-  syn keyword groovyLangClass  ClassFormatError Error ExceptionInInitializerError
-  syn keyword groovyLangClass  IllegalAccessError InstantiationError
-  syn keyword groovyLangClass  IncompatibleClassChangeError InternalError
-  syn keyword groovyLangClass  LinkageError NoClassDefFoundError
-  syn keyword groovyLangClass  NoSuchFieldError NoSuchMethodError
-  syn keyword groovyLangClass  OutOfMemoryError StackOverflowError
-  syn keyword groovyLangClass  ThreadDeath UnknownError UnsatisfiedLinkError
-  syn keyword groovyLangClass  UnsupportedClassVersionError VerifyError
-  syn keyword groovyLangClass  VirtualMachineError
-  syn keyword groovyLangObject clone equals finalize getClass hashCode
-  syn keyword groovyLangObject notify notifyAll toString wait
-  GroovyHiLink groovyLangClass                   groovyConstant
-  GroovyHiLink groovyLangObject                  groovyConstant
-  syn cluster groovyTop add=groovyLangObject,groovyLangClass
-  syn cluster groovyClasses add=groovyLangClass
-endif
-
 " Groovy JDK stuff
 syn keyword groovyJDKBuiltin    as def in
 syn keyword groovyJDKOperOverl  div minus plus abs round power multiply 
 syn keyword groovyJDKMethods 	each call inject sort print println 
 syn keyword groovyJDKMethods    getAt putAt size push pop toList getText writeLine eachLine readLines
-syn keyword groovyJDKMethods    withReader withStream withWriter withPrintWriter write leftShift 
+syn keyword groovyJDKMethods    withReader withStream withWriter withPrintWriter write read leftShift 
 syn keyword groovyJDKMethods    withWriterAppend readBytes splitEachLine
 syn keyword groovyJDKMethods    newInputStream newOutputStream newPrintWriter newReader newWriter 
 syn keyword groovyJDKMethods    compareTo next previous isCase 
@@ -180,7 +186,7 @@ if exists("groovy_space_errors")
 endif
 
 " it is a better case construct than java.vim to match groovy syntax
-syn region  groovyLabelRegion     transparent matchgroup=groovyLabel start="\<case\>" matchgroup=NONE end=":\|$" contains=groovyNumber,groovyString,groovyLangClass
+syn region  groovyLabelRegion     transparent matchgroup=groovyLabel start="\<case\>" matchgroup=NONE end=":\|$" contains=groovyNumber,groovyString,groovyLangClass,groovyJavaLangClass
 syn match   groovyUserLabel       "^\s*[_$a-zA-Z][_$a-zA-Z0-9_]*\s*:"he=e-1 contains=groovyLabel
 syn keyword groovyLabel           default
 
@@ -241,7 +247,6 @@ syn match   groovySpecialCharError contained "[^']"
 syn match   groovySpecialChar      contained "\\\([4-9]\d\|[0-3]\d\d\|[\"\\'ntbrf]\|u\x\{4\}\)"
 syn region  groovyString          start=+"+ end=+"+ end=+$+ contains=groovySpecialChar,groovySpecialError,@Spell,groovyELExpr
 syn region  groovyString          start=+'+ end=+'+ end=+$+ contains=groovySpecialChar,groovySpecialError,@Spell,groovyELExpr
-" TODO: better matching
 " syn region groovyELExpr start=+${+ end=+}+ keepend contained
  syn match groovyELExpr /\${.\{-}}/ contained
 GroovyHiLink groovyELExpr Identifier
@@ -341,8 +346,6 @@ exec "syn sync ccomment groovyComment minlines=" . groovy_minlines
 
 " ################### 
 " Groovy stuff
-" syn match   groovyComment		"#.*$"
-
 " syn match groovyOperator		"|[ ,a-zA-Z0-9_*]\+|"
 
 " All groovy valid tokens
@@ -381,7 +384,6 @@ syn match   groovyParenError       "\]"
 
 " ###############################
 " java.vim default highlighting
-" The default highlighting.
 if version >= 508 || !exists("did_groovy_syn_inits")
   if version < 508
     let did_groovy_syn_inits = 1
