@@ -1,0 +1,5 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=945
+
+Syntax file for the Groovy programming language. It relies on the java.vim syntax file.
+I was inspired by java.vim and ruby.vim syntax definition, so I thank the authors of those scripts.
+
