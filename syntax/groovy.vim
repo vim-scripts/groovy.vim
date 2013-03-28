@@ -191,8 +191,8 @@ syn match   groovyUserLabel       "^\s*[_$a-zA-Z][_$a-zA-Z0-9_]*\s*:"he=e-1 cont
 syn keyword groovyLabel           default
 
 if !exists("groovy_allow_cpp_keywords")
-  syn keyword groovyError auto delete extern friend inline redeclared
-  syn keyword groovyError register signed sizeof struct template typedef union
+  syn keyword groovyError auto extern friend inline redeclared
+  syn keyword groovyError signed sizeof struct template typedef union
   syn keyword groovyError unsigned operator
 endif
 
