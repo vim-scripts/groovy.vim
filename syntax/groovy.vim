@@ -1,13 +1,13 @@
 " Vim syntax file
 " Language:	Groovy
 " Maintainer:	Alessio Pace <billy.corgan@tiscali.it>
-" Version: 	0.1.9b
-" URL:	  http://www.vim.org/scripts/script.php?script_id=945	
+" Version: 	0.1.10
+" URL:	  http://www.vim.org/scripts/script.php?script_id=945
 " Last Change:	6/4/2004
 
 " This is my very first vim script, I hope to have
 " done it the right way.
-" 
+"
 " I must directly or indirectly thank the author of java.vim and ruby.vim:
 " I copied from them most of the stuff :-)
 "
@@ -20,7 +20,7 @@
 " [groovy is still not recognized by vim! :-( ]
 "
 " 1) copy the file in the (global or user's $HOME/.vim/syntax/) syntax folder
-" 
+"
 " 2) add this line to recognize groovy files by filename extension:
 "
 " au BufNewFile,BufRead *.groovy  setf groovy
@@ -36,7 +36,7 @@
 "  endif
 "
 "  in the global scripts.vim file or in $HOME/.vim/scripts.vim
-" 
+"
 " 4) open/write a .groovy file or a groovy script :-)
 "
 " Let me know if you like it or send me patches, so that I can improve it
@@ -99,11 +99,11 @@ syn keyword groovyScopeDecl       public protected private abstract
 if exists("groovy_highlight_groovy_lang_ids") || exists("groovy_highlight_groovy_lang") || exists("groovy_highlight_all")
   " groovy.lang.*
   syn keyword groovyLangClass  Closure MetaMethod GroovyObject
-  
+
   syn match groovyJavaLangClass "\<System\>"
   syn keyword groovyJavaLangClass  Cloneable Comparable Runnable Serializable Boolean Byte Class Object
   syn keyword groovyJavaLangClass  Character CharSequence ClassLoader Compiler
-  " syn keyword groovyJavaLangClass  Integer Double Float Long 
+  " syn keyword groovyJavaLangClass  Integer Double Float Long
   syn keyword groovyJavaLangClass  InheritableThreadLocal Math Number Object Package Process
   syn keyword groovyJavaLangClass  Runtime RuntimePermission InheritableThreadLocal
   syn keyword groovyJavaLangClass  SecurityManager Short StrictMath StackTraceElement
@@ -157,18 +157,18 @@ syn match groovyExceptions        "\<Exception\>\|\<[A-Z]\{1,}[a-zA-Z0-9]*Except
 
 " Groovy JDK stuff
 syn keyword groovyJDKBuiltin    as def in
-syn keyword groovyJDKOperOverl  div minus plus abs round power multiply 
-syn keyword groovyJDKMethods 	each call inject sort print println 
+syn keyword groovyJDKOperOverl  div minus plus abs round power multiply
+syn keyword groovyJDKMethods 	each call inject sort print println
 syn keyword groovyJDKMethods    getAt putAt size push pop toList getText writeLine eachLine readLines
-syn keyword groovyJDKMethods    withReader withStream withWriter withPrintWriter write read leftShift 
+syn keyword groovyJDKMethods    withReader withStream withWriter withPrintWriter write read leftShift
 syn keyword groovyJDKMethods    withWriterAppend readBytes splitEachLine
-syn keyword groovyJDKMethods    newInputStream newOutputStream newPrintWriter newReader newWriter 
-syn keyword groovyJDKMethods    compareTo next previous isCase 
+syn keyword groovyJDKMethods    newInputStream newOutputStream newPrintWriter newReader newWriter
+syn keyword groovyJDKMethods    compareTo next previous isCase
 syn keyword groovyJDKMethods    times step toInteger upto any collect dump every find findAll grep
-syn keyword groovyJDKMethods    inspect invokeMethods join 
+syn keyword groovyJDKMethods    inspect invokeMethods join
 syn keyword groovyJDKMethods    getErr getIn getOut waitForOrKill
 syn keyword groovyJDKMethods    count tokenize asList flatten immutable intersect reverse reverseEach
-syn keyword groovyJDKMethods    subMap append asWritable eachByte eachLine eachFile 
+syn keyword groovyJDKMethods    subMap append asWritable eachByte eachLine eachFile
 syn cluster groovyTop add=groovyJDKBuiltin,groovyJDKOperOverl,groovyJDKMethods
 
 " no useful I think, so I comment it..
@@ -247,6 +247,8 @@ syn match   groovySpecialCharError contained "[^']"
 syn match   groovySpecialChar      contained "\\\([4-9]\d\|[0-3]\d\d\|[\"\\'ntbrf]\|u\x\{4\}\)"
 syn region  groovyString          start=+"+ end=+"+ end=+$+ contains=groovySpecialChar,groovySpecialError,@Spell,groovyELExpr
 syn region  groovyString          start=+'+ end=+'+ end=+$+ contains=groovySpecialChar,groovySpecialError,@Spell,groovyELExpr
+syn region  groovyMultiLineString start=+'''+ end=+'''+ contains=groovySpecialChar,groovySpecialError,@Spell,groovyELExpr
+
 " syn region groovyELExpr start=+${+ end=+}+ keepend contained
  syn match groovyELExpr /\${.\{-}}/ contained
 GroovyHiLink groovyELExpr Identifier
@@ -326,7 +328,7 @@ if exists("groovy_highlight_debug")
     GroovyHiLink groovyDebugSpecialCharacter DebugSpecial
     GroovyHiLink groovyDebugCharacter        DebugString
     GroovyHiLink groovyDebugParen            Debug
-  
+
     GroovyHiLink DebugString               String
     GroovyHiLink DebugSpecial              Special
     GroovyHiLink DebugBoolean              Boolean
@@ -334,7 +336,7 @@ if exists("groovy_highlight_debug")
   endif
 endif
 
-" Match all Exception classes 
+" Match all Exception classes
 syn match groovyExceptions        "\<Exception\>\|\<[A-Z]\{1,}[a-zA-Z0-9]*Exception\>"
 
 
@@ -344,7 +346,7 @@ endif
 exec "syn sync ccomment groovyComment minlines=" . groovy_minlines
 
 
-" ################### 
+" ###################
 " Groovy stuff
 " syn match groovyOperator		"|[ ,a-zA-Z0-9_*]\+|"
 
@@ -407,6 +409,7 @@ if version >= 508 || !exists("did_groovy_syn_inits")
   GroovyHiLink groovySpecialError	Error
   GroovyHiLink groovySpecialCharError	Error
   GroovyHiLink groovyString		String
+  GroovyHiLink groovyMultiLineString    String
   GroovyHiLink groovyCharacter		Character
   GroovyHiLink groovySpecialChar	SpecialChar
   GroovyHiLink groovyNumber		Number
@@ -420,15 +423,15 @@ if version >= 508 || !exists("did_groovy_syn_inits")
   GroovyHiLink groovyConstant		Constant
   GroovyHiLink groovyTypedef		Typedef
   GroovyHiLink groovyTodo		Todo
-  
+
   GroovyHiLink groovyCommentTitle	SpecialComment
   GroovyHiLink groovyDocTags		Special
   GroovyHiLink groovyDocParam		Function
   GroovyHiLink groovyCommentStar	groovyComment
-  
+
   GroovyHiLink groovyType		Type
   GroovyHiLink groovyExternal		Include
-  
+
   GroovyHiLink htmlComment		Special
   GroovyHiLink htmlCommentPart		Special
   GroovyHiLink groovySpaceError		Error
