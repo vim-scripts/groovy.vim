@@ -69,7 +69,7 @@ endif
 
 " keyword definitions
 syn keyword groovyExternal        native package
-syn match groovyExternal          "\<import\(\s\+static\>\)\?"
+syn match groovyExternal          "\<import \(\s\+static\>\)\?"
 syn keyword groovyError           goto const
 syn keyword groovyConditional     if else switch
 syn keyword groovyRepeat          while for do
